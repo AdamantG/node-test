@@ -23,6 +23,7 @@ function getAllHtml(page){
         response.on('end', function () {
             let htmlArray = data.toString();
             parseHtml(htmlArray);
+            console.log(info);
         });
     }).on('error', function (e) {
         console.log('error:', e.message);
@@ -33,9 +34,9 @@ function parseHtml(html){
     let $ = cheerio.load(html);
     let cells = $('.cell');
 
-    cells && cells.each(function (item) {
+    cells && cells.each(function (index, item) {
         let cell = $(item);
-        let user = cell.find('.user_avatar').attr('href');
+        let user = cell.find('.user_avatar').attr('href').split('/user/')[1];
         let url = cell.find('.topic_title').attr('href');
         let title = cell.find('.topic_title').attr('title');
         let time = cell.find('.last_active_time').text();
@@ -48,6 +49,7 @@ function parseHtml(html){
             time: time,
             type: type
         })
+
     })
 }
 
@@ -55,5 +57,3 @@ function parseHtml(html){
 //     getAllHtml(i);
 // }
 getAllHtml(1);
-
-console.log(info);
