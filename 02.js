@@ -23,7 +23,7 @@ function getAllHtml(page){
         response.on('end', function () {
             let htmlArray = data.toString();
             parseHtml(htmlArray);
-            console.log(info);
+            console.log('当前贴子数：', info.length);
         });
     }).on('error', function (e) {
         console.log('error:', e.message);
@@ -42,18 +42,19 @@ function parseHtml(html){
         let time = cell.find('.last_active_time').text();
         let type = cell.find('.topic_title_wrapper').children().first().text();
 
-        info.push({
-            user: user,
-            url: url,
-            title: title,
-            time: time,
-            type: type
-        })
+        if(time.indexOf('秒') !== -1 || time.indexOf('分钟') !== -1 || time.indexOf('小时') !== -1){
+            info.push({
+                user: user,
+                url: url,
+                title: title,
+                time: time,
+                type: type
+            })
+        }
 
     })
 }
 
-// for(let i = 1; i < 100; i++){
-//     getAllHtml(i);
-// }
-getAllHtml(1);
+for(let i = 1; i < 100; i++){
+    getAllHtml(i);
+}

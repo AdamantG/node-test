@@ -23,3 +23,14 @@
 
 ## 题目：
 1. https://cnodejs.org/ 小爬虫程序，抓取当天的帖子信息：包括 url、用户、标题、发布时间、分类
+
+## 遇到问题：
+1. cell使用find方法为undefined,cell本身不为空。->cell返回一个cheerio对象初始化，故不为空，但实际没有关于html的内容。each参数与forEach参数是反的。
+2. 要求时间是当天，抓取html页面是根据page，无法知道时间，故只能获取所有page的html，但不知道total page数。
+
+## 涉及知识点：
+1. https
+2. cheerio
+
+## 疑问
+1. 如何最后统一获取最后内容？
