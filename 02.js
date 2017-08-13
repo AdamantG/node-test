@@ -30,7 +30,7 @@ function getAllHtml(page){
     }).end();
 }
 
-function parseHtml(html){
+function parseHtml(html) {
     let $ = cheerio.load(html);
     let cells = $('.cell');
 
@@ -42,7 +42,7 @@ function parseHtml(html){
         let time = cell.find('.last_active_time').text();
         let type = cell.find('.topic_title_wrapper').children().first().text();
 
-        if(time.indexOf('秒') !== -1 || time.indexOf('分钟') !== -1 || time.indexOf('小时') !== -1){
+        if (time.indexOf('秒') !== -1 || time.indexOf('分钟') !== -1 || time.indexOf('小时') !== -1) {
             info.push({
                 user: user,
                 url: url,
@@ -51,7 +51,6 @@ function parseHtml(html){
                 type: type
             })
         }
-
     })
 }
 
